@@ -1,0 +1,18 @@
+#{{ ansible_managed }}
+[Unit]
+Description=flannel is an etcd backed network fabric for containers
+Documentation=https://github.com/coreos/flannel
+After=network-online.target 
+Wants=network-online.target
+
+[Service]
+Type=notify
+ExecStartPre=/opt/infra-binaries/etcdctl --endpoints {{ etcd_servers }} mk /coreos.com/network/config '{"Network":"{{ flannel_network }}","Backend":{"Type":"{{ flannel_backend }}"}}'
+
+ExecStart=/opt/bin/flanneld --ip-masq⋅--etcd-endpoints={{ etcd_servers }}
+
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

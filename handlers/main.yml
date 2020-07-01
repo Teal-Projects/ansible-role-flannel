@@ -1,0 +1,8 @@
+---
+
+- name: restart flannel
+  systemd:
+    name: flannel
+    state: restarted
+    enabled: yes
+  become: yes

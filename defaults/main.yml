@@ -1,0 +1,9 @@
+flannel_version: 0.11.0
+flannel_url: https://github.com/coreos/flannel/releases/download/v{{ flannel_version }}/flannel-v{{ flannel_version }}-linux-amd64.tar.gz
+
+etcd_version: 3.3.18
+etcd_url: https://github.com/coreos/etcd/releases/download/v{{ etcd_version }}/etcd-v{{ etcd_version }}-linux-amd64.tar.gz
+
+etcd_servers:
+flannel_backend: vxlan
+flannel_network:
